@@ -30,7 +30,6 @@
 
 </div>
 
-@@ -33,372 +26,193 @@
 ## 📋 Índice
 
 - [Visão Geral](#-visão-geral)
