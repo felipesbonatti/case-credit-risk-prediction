@@ -1,218 +1,441 @@
 <div align="center">
 
-# 📊 A/B Test e Elasticidade Preço-Demanda
+# 🏦 Credit Risk Platform
 
-### Segmento: Consignado Privado
+### Plataforma Enterprise de Machine Learning para Análise de Risco de Crédito
 
 <br>
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.0+-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-3.0+-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+
+<br>
+
+[![LightGBM](https://img.shields.io/badge/LightGBM-3.3.2-yellow?style=for-the-badge&logo=lightgbm&logoColor=black)](https://lightgbm.readthedocs.io/)
+[![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-1.3+-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-2.0+-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-1.24+-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
-[![Matplotlib](https://img.shields.io/badge/Matplotlib-3.7+-11557c?style=for-the-badge&logo=matplotlib&logoColor=white)](https://matplotlib.org/)
-[![SciPy](https://img.shields.io/badge/SciPy-1.10+-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)](https://scipy.org/)
+
+
 
 <br>
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/felipesbonatti/pricing-ab-test-elasticity)
-[![Repo Size](https://img.shields.io/github/repo-size/felipesbonatti/pricing-ab-test-elasticity?style=for-the-badge)](https://github.com/felipesbonatti/pricing-ab-test-elasticity)
-[![Last Commit](https://img.shields.io/github/last-commit/felipesbonatti/pricing-ab-test-elasticity?style=for-the-badge)](https://github.com/felipesbonatti/pricing-ab-test-elasticity/commits/main)
+[![Tests](https://img.shields.io/badge/Tests-79_passing-success?style=for-the-badge&logo=pytest)](/api/tests)
+[![BACEN](https://img.shields.io/badge/BACEN-Compliant-red?style=for-the-badge&logo=bank)](https://www.bcb.gov.br/)
+[![Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen?style=for-the-badge&logo=codecov)](README.md)
 
 </div>
 
----
-
+@@ -33,372 +26,193 @@
 ## 📋 Índice
 
 - [Visão Geral](#-visão-geral)
-- [Demonstração dos Resultados](#-demonstração-dos-resultados)
-- [Objetivo e Valor de Negócio](#-objetivo-e-valor-de-negócio)
-- [Tarefa 1 — Teste A/B](#-tarefa-1--teste-ab)
-- [Tarefa 2 — Elasticidade Preço-Demanda](#-tarefa-2--elasticidade-preço-demanda)
-- [Limitações e Leitura Correta dos Resultados](#️-limitações-e-leitura-correta-dos-resultados)
-- [Recomendações](#-recomendações)
-- [Estrutura do Repositório](#-estrutura-do-repositório)
-- [Como Reproduzir](#️-como-reproduzir)
-- [Decisões Metodológicas](#-decisões-metodológicas)
-- [Roadmap](#-roadmap)
+- [Demonstração do Sistema](#-demonstração-do-sistema)
+- [Objetivo do Case e Valor de Negócio](#-objetivo-do-case-e-valor-de-negócio)
+- [Arquitetura de Solução](#️-arquitetura-de-solução)
+- [Plano de Implementação](#️-plano-de-implementação)
+- [Reprodutibilidade da Arquitetura](#️-reprodutibilidade-da-arquitetura)
+- [Screenshots do Sistema](#-screenshots-do-sistema)
+- [Melhorias e Roadmap](#-melhorias-e-roadmap)
+- [Documentação Adicional](#-documentação-adicional)
+
+
 
 ---
 
 ## 🎯 Visão Geral
 
-> **Análise quantitativa de pricing para o segmento de Consignado Privado, combinando um experimento A/B controlado (2.200 ofertas) com um modelo de elasticidade preço-demanda em painel observacional (105 semanas). A análise aplica erros-padrão cluster-robust, correção de Bonferroni e cálculo explícito de poder estatístico, entregando recomendações de negócio acompanhadas de suas devidas ressalvas metodológicas.**
+> **Plataforma de Machine Learning enterprise-grade para análise de risco de crédito, totalmente automatizada com um script de execução universal (`run_all.py`). A solução integra um modelo LightGBM de alta performance (AUC 0.79), uma API FastAPI robusta e um Dashboard Premium em React, demonstrando um ciclo de MLOps completo, desde a geração dos dados até a implantação e o teste, com foco em conformidade regulatória e rentabilidade do negócio.**
 
-### Destaques
-
-<div align="center">
-
-| **Experimento A/B** | **Elasticidade** | **Rigor Estatístico** | **Recomendação** |
-|:---:|:---:|:---:|:---:|
-| 2.200 ofertas | -1,03 | Cluster-robust | Não adotar o corte |
-| Controle vs. tratamento | IC 95% [-1,18; -0,89] | Correção de Bonferroni | Nova taxa intermediária |
-| Receita **-23,5%** (p=0,014) | Unitária, associacional | MDE explícito | Teste segmentado |
-
-</div>
-
----
-
-## 📋 Demonstração dos Resultados
-
-### Teste A/B — Comparação de Taxas
+### Destaques do Projeto
 
 <div align="center">
 
-![Gráficos do Teste A/B](charts_ab.png)
-
-**Comparação entre grupos controle (2,40% a.m.) e tratamento (2,20% a.m.)**
-
-</div>
-
-### Elasticidade Preço-Demanda
-
-<div align="center">
-
-![Gráficos de Elasticidade](charts_elasticidade.png)
-
-**Modelo log-log com erro-padrão cluster-robust por semana**
+| **Automação** | **ML Model** | **API** | **Dashboard** | **Conformidade** |
+|:---:|:---:|:---:|:---:|:---:|
+| `run_all.py` | **LightGBM** | **FastAPI** | **React + TS** | **BACEN 2682/99** |
+| Setup em 1 comando | AUC **0.79** | **79 testes** | Análise Individual | Taxa Mínima |
+| Cross-platform | **21 features** | Swagger Docs | Análise em Lote | Provisão |
 
 </div>
-
----
-
-## 🎯 Objetivo e Valor de Negócio
-
-Duas perguntas de negócio sobre pricing no segmento de Consignado Privado:
-
-1. **Um corte de taxa aumenta a conversão o suficiente para compensar a receita perdida por oferta?**
-2. **Qual a sensibilidade da demanda a variações de taxa, e ela varia por canal ou UF?**
-
-<div align="center">
-
-| Métrica | Resultado | Impacto no Negócio |
-|:---|:---|:---|
-| **Decisão do A/B** | Tratamento reduziu receita em 23,5% | O corte de taxa não gera ganho de aceite suficiente para compensar a queda de receita por oferta. |
-| **Elasticidade geral** | -1,03 (IC 95%: -1,18 a -0,89) | Demanda sensível a preço — mas leitura associacional, não causal (ver seção de limitações). |
-| **Rigor estatístico** | Erro-padrão cluster-robust + Bonferroni | Evita falsos positivos e leituras de heterogeneidade que não se sustentam com o erro-padrão correto. |
-| **Poder estatístico** | MDE inadimplência ≈ 3,6 p.p. | "Não significativo" é interpretado como "sem evidência suficiente", não como "equivalência". |
-| **Recomendação final** | Manter taxa atual e testar 2,30% a.m. | Próximo experimento com taxa intermediária, segmentação por risco e amostra dimensionada. |
-
-</div>
-
----
-
-## 📊 Tarefa 1 — Teste A/B
-
-Controle (A): taxa 2,40% a.m. · Tratamento (B): taxa 2,20% a.m. · n = 2.200 ofertas
-
-| Métrica | A (controle) | B (tratamento) | Diferença | p-valor | Conclusão |
-|:---|:---:|:---:|:---:|:---:|:---|
-| Taxa de aceite | 19,74% | 19,08% | -0,67 p.p. | 0,693 | Não significativo |
-| Receita média (90d) | R$ 111,44 | R$ 85,29 | -23,5% | 0,014 | **Significativo** |
-| Inadimplência (90d) | 2,01% | 1,63% | -0,38 p.p. | 0,501 | Não confirmada |
-
-> [!NOTE]
-> O teste de inadimplência está subpotencializado — com ~215 aceitos por braço, a mínima diferença detectável (MDE) com 80% de poder é de ~3,6 p.p., bem acima da diferença observada. "Não significativo" aqui quer dizer *sem evidência suficiente*, não *equivalência entre os grupos*.
-
----
-
-## 📈 Tarefa 2 — Elasticidade Preço-Demanda
-
-Modelo log-log (`ln(propostas) ~ ln(taxa ofertada)`) estimado em três especificações:
-
-| Modelo | Elasticidade | IC 95% | Erro-padrão |
-|:---|:---:|:---:|:---|
-| OLS simples | -1,018 | [-1,174; -0,861] | Homocedástico |
-| FE canal + UF | **-1,033** | [-1,179; -0,888] | Cluster-robust (semana) |
-| FE + tendência temporal | -1,036 | [-1,181; -0,891] | Cluster-robust (semana) |
-
-**Elasticidade por canal e UF** (erro-padrão cluster-robust, correção de Bonferroni para 6 comparações):
-
-| Canal | Elasticidade | | UF | Elasticidade |
-|:---|:---:|---|:---|:---:|
-| Agente | -1,18 | | RJ | -1,19 |
-| Site | -1,05 | | SP | -1,03 |
-| App | -0,89 | | MG | -0,88 |
-
-Após a correção, **nenhuma diferença entre canais ou UFs é estatisticamente significativa** — os valores pontuais são hipóteses para um próximo teste segmentado, não uma base para pricing diferenciado imediato.
-
----
-
-## ⚠️ Limitações e Leitura Correta dos Resultados
 
 > [!IMPORTANT]
-> **Endogeneidade:** o modelo de elasticidade é uma correlação entre taxa ofertada e volume de propostas em um painel **observacional**, não um experimento controlado como o da Tarefa 1. Se a taxa é ajustada em resposta à demanda (causalidade reversa), o coeficiente pode estar enviesado em qualquer direção. A elasticidade deve ser tratada como **leitura associacional/direcional**, não como estimativa causal pronta para alimentar uma curva de otimização de receita.
-
-Outros pontos de atenção:
-
-- A comparação entre subgrupos (canal/UF) usa amostras menores (~135 obs. por canal, ~315 por UF), resultando em intervalos de confiança mais largos — refletido nos gráficos.
-- O teste de inadimplência da Tarefa 1 está subpotencializado; a ausência de significância não implica equivalência entre os grupos.
+> Este projeto foi desenvolvido para a **Banca do Santander** e demonstra um ciclo completo de MLOps, desde a geração de dados até a implantação em produção.
 
 ---
 
-## ✅ Recomendações
+## 📋 Demonstração do Sistema
 
-1. **Não adotar**, no desenho atual, a taxa testada no tratamento B como padrão.
-2. **Priorizar um novo teste** com taxa intermediária (ex.: 2,30% a.m.), com segmentação por perfil de risco e amostra dimensionada para o efeito mínimo relevante em inadimplência.
-3. **Não segmentar pricing** por canal/UF com base apenas na elasticidade do painel atual — tratar como hipótese a testar.
-4. **Complementar a decisão** com avaliação de receita líquida, custo de risco e LTV antes de cortes mais amplos de taxa, e desenhar o próximo experimento para permitir estimar elasticidade de preço causalmente (ex.: taxas aleatorizadas por célula).
+### Análise Individual - Crédito Aprovado
+
+<div align="center">
+
+![Análise Individual - Aprovado](https://raw.githubusercontent.com/felipesbonatti/case-credit-risk-prediction/main/assets/analise-individual.gif)
+
+**Análise individual com resultado de crédito aprovado**
+
+</div>
+
+### Análise Individual - Crédito Negado
+
+<div align="center">
+
+![Análise Individual - Negado](https://raw.githubusercontent.com/felipesbonatti/case-credit-risk-prediction/main/assets/analise_individual.gif)
+
+**Análise individual com resultado de crédito negado**
+
+</div>
+
+### Análise em Lote
+
+<div align="center">
+
+![Análise em Lote](https://raw.githubusercontent.com/felipesbonatti/case-credit-risk-prediction/main/assets/demo.gif)
+
+**Processamento em lote de múltiplas propostas com upload de arquivo CSV**
+
+</div>
 
 ---
 
-## 📁 Estrutura do Repositório
+## 🎯 Objetivo do Case e Valor de Negócio
 
-| Arquivo | Descrição |
-|:---|:---|
-| [`pricing_notebook.ipynb`](pricing_notebook.ipynb) | Notebook executado com a análise completa (Tarefas 1 e 2), passo a passo. |
-| [`pricing_analysis.py`](pricing_analysis.py) | Script que reproduz toda a análise e gera os dois gráficos consolidados. |
-| [`ab_test_offers.csv`](ab_test_offers.csv) | Base do experimento A/B (2.200 ofertas). |
-| [`demand_panel.csv`](demand_panel.csv) | Painel semanal para estimação de elasticidade (105 semanas × canal × UF). |
-| [`charts_ab.png`](charts_ab.png) | Gráfico consolidado do teste A/B. |
-| [`charts_elasticidade.png`](charts_elasticidade.png) | Gráfico consolidado da elasticidade preço-demanda. |
-| [`requirements.txt`](requirements.txt) | Dependências Python com versões fixas. |
+### Valor de Negócio Mensurável
+
+
+
+
+<div align="center">
+
+| Métrica | Valor Alcançado | Impacto no Negócio |
+|:-----------|:-------------------|:----------------------|
+| **Automação do Setup** | 100% com `run_all.py` | **Time-to-Market Reduzido**: Qualquer desenvolvedor pode ter o ambiente 100% funcional em minutos, não dias. |
+| **Inteligência de Taxas** | Baseado em dados do BACEN | **Rentabilidade Otimizada**: A taxa mínima rentável, calculada com base no risco real e custos operacionais, evita prejuízos. |
+| **Qualidade do Código** | 79 testes automatizados | **Redução de Riscos e Bugs**: Garante a estabilidade da API e a confiabilidade das predições. |
+| **Performance do Modelo** | AUC-ROC > 0.79 | **Decisões Mais Precisas**: Aumenta a capacidade de identificar bons e maus pagadores, reduzindo a inadimplência. |
+| **Conformidade** | Resolução CMN 2.682/99 | **Segurança Regulatória**: O cálculo de provisão e as taxas estão alinhados com as normas do BACEN. |
+
+</div>
 
 ---
 
-## ⚙️ Como Reproduzir
+## 🏛️ Arquitetura de Solução
+
+### Fluxo de Dados e Processamento
+
+```mermaid
+graph TB
+    A[run_all.py] --> B[Geração de Dados<br/>1M registros]
+    B --> C[Treinamento LightGBM<br/>AUC 0.79]
+    C --> D[Artefatos PKL<br/>modelo + encoders]
+    D --> E[API FastAPI<br/>79 testes]
+    E --> F[Dashboard React<br/>Análise Individual]
+    E --> G[Dashboard React<br/>Análise em Lote]
+    F --> H[Usuário Final]
+    G --> H
+    
+    style A fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+    style B fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style C fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
+    style D fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
+    style E fill:#F44336,stroke:#C62828,stroke-width:2px,color:#fff
+    style F fill:#00BCD4,stroke:#00838F,stroke-width:2px,color:#fff
+    style G fill:#00BCD4,stroke:#00838F,stroke-width:2px,color:#fff
+    style H fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+```
+
+### Componentes Técnicos
+
+<details open>
+<summary><b>Clique para expandir/recolher a tabela de componentes</b></summary>
+
+
+
+
+| Componente | Tecnologia | Responsabilidade | Justificativa da Escolha |
+|:--------------|:--------------|:--------------------|:----------------------------|
+| **API de Predição** | **FastAPI** | Orquestrar o fluxo de predição, aplicar regras de negócio, gerenciar segurança e servir o modelo de ML. | Altíssima performance (assíncrona), validação de dados nativa com Pydantic e geração automática de documentação interativa. |
+| **Dashboard Premium** | **React (Vite) + TypeScript** | Fornecer uma interface rica, moderna e interativa para a análise de crédito, com componentes reutilizáveis e performance otimizada. | Ecossistema maduro, componentização, performance superior e flexibilidade para criar UIs complexas e profissionais. |
+| **Modelo de Risco** | **LightGBM** | Realizar a classificação de risco de crédito com alta precisão e baixa latência. | Performance superior em dados tabulares, eficiência em memória e velocidade de treinamento, ideal para o cenário de crédito. |
+| **Testes Automatizados** | **Pytest** | Garantir a qualidade, a estabilidade e a confiabilidade da API, com uma suíte de 79 testes cobrindo diversas camadas da aplicação. | Simplicidade, ecossistema rico em plugins e padrão de mercado para testes em Python, facilitando a manutenção e a evolução do código. |
+| **Script de Automação** | **Python (Padrão)** | Orquestrar todo o ciclo de vida da aplicação: setup do ambiente, geração de dados, treinamento do modelo e inicialização dos serviços. | Linguagem universal e de fácil manutenção, permitindo a criação de um fluxo de trabalho complexo e à prova de falhas. |
+
+</details>
+
+---
+
+## ⚙️ Plano de Implementação
+
+### Automação Universal com `run_all.py`
+
+> [!TIP]
+> O principal diferencial do projeto é o script **`run_all.py`**, que automatiza **todo o ciclo de vida da aplicação** em um único comando, garantindo a **reprodutibilidade da arquitetura** em qualquer ambiente.
+
+```mermaid
+graph TD
+    A[run_all.py] --> B[Verificação do Ambiente]
+    B --> C[Criação dos .env]
+    C --> D[Instalação de Dependências]
+    D --> E[Geração de Dados 1M]
+    E --> F[Treinamento LightGBM]
+    F --> G[Build do Dashboard]
+    G --> H[Execução de 79 Testes]
+    H --> I[Inicialização dos Serviços]
+    I --> J[Abre Navegador]
+    
+    style A fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+    style B fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style C fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style D fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style E fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
+    style F fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
+    style G fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
+    style H fill:#00BCD4,stroke:#00838F,stroke-width:2px,color:#fff
+    style I fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style J fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+```
+
+<details open>
+<summary><b>Clique para ver a tabela detalhada de passos</b></summary>
+
+| Passo | Ação | Propósito |
+|:--------:|:--------|:-------------|
+| **1** | **Verificação do Ambiente** | Detecta Python, Node.js e gerenciadores de pacotes disponíveis no sistema. |
+| **2** | **Criação dos Arquivos `.env`** | Gera arquivos de configuração com segredos e variáveis de ambiente necessárias. |
+| **3** | **Instalação das Dependências** | Instala todos os pacotes necessários via `pip` e `pnpm`/`npm` automaticamente. |
+| **4** | **Geração de Dados Sintéticos** | Executa `scripts/gerar_dados_REALISTICOS.py` para criar o dataset de treinamento realístico (1 milhão de registros). |
+| **5** | **Treinamento do Modelo** | Executa `scripts/treinar_modelo_PREMIUM.py` para treinar o modelo LightGBM e salvar os artefatos (PKL). |
+| **6** | **Build do Dashboard** | Compila a aplicação React (`dashboard_premium`) para produção com otimizações. |
+| **7** | **Execução dos Testes** | Roda a suíte completa de 79 testes `pytest` para garantir a integridade da API. |
+| **8** | **Inicialização dos Serviços** | Inicia a API FastAPI e serve o Dashboard Premium, abrindo ambos automaticamente no navegador. |
+
+</details>
+
+
+
+
+
+### Inteligência de Negócio e Conformidade Regulatória
+
+#### Cálculo da Taxa Mínima Rentável
+
+> [!NOTE]
+> Para evitar operações que gerem prejuízo, o sistema calcula a **taxa mínima rentável** para cada proposta, baseada na Resolução 2.682/99 do CMN (Conselho Monetário Nacional).
+
+
+**Fórmula:**
+
+```math
+Receita_{necessária} = CDI + Provisão_{BACEN} + Custos_{operacionais} + Margem_{mínima}
+```
+
+**Onde:**
+- **CDI**: Taxa de captação do banco (custo de oportunidade)
+- **Provisão BACEN**: Percentual de provisionamento obrigatório conforme nível de risco (Resolução 2.682/99)
+- **Custos Operacionais**: Despesas administrativas, tecnologia, pessoal
+- **Margem Mínima**: Retorno mínimo esperado pelos acionistas
+
+#### Validação Flexível e Inteligente
+
+```mermaid
+stateDiagram-v2
+    [*] --> Input: Usuário digita taxa
+    Input --> Validacao1: Taxa < Recomendada BACEN?
+    Validacao1 --> Aviso: Sim
+    Validacao1 --> Validacao2: Não
+    Aviso --> Validacao2: Usuário confirma e continua
+    Validacao2 --> Bloqueio: Taxa < Mínima Rentável?
+    Validacao2 --> Aprovado: Não
+    Bloqueio --> [*]: Operação bloqueada
+    Aprovado --> [*]: Análise prossegue
+```
+---
+
+## 🛠️ Reprodutibilidade da Arquitetura
+
+> [!IMPORTANT]
+> A complexidade de configurar um ambiente de desenvolvimento de Machine Learning é um dos maiores gargalos em projetos de dados. Para resolver isso, o projeto inclui o `run_all.py`, um script de automação que encapsula **toda a complexidade do setup em um único comando**.
 
 ### Pré-requisitos
 
-- Python 3.10+
-- pip
+- **Python 3.11+**
+- **Node.js 18+** (Necessário para o Dashboard Premium em React)
 
-### Instalação e execução
+### Execução com um Único Comando
+
+<table>
+<tr>
+<td width="50%">
+
+#### Linux / macOS
 
 ```bash
-git clone https://github.com/felipesbonatti/pricing-ab-test-elasticity.git
-cd pricing-ab-test-elasticity
-pip install -r requirements.txt
-python pricing_analysis.py
+python3 run_all.py
 ```
 
-O script gera `charts_ab.png` e `charts_elasticidade.png` automaticamente e imprime todos os testes estatísticos no console.
+</td>
+<td width="50%">
+
+#### Windows
+
+```powershell
+python run_all.py
+```
+
+</td>
+</tr>
+</table>
 
 > [!TIP]
-> Para uma leitura sem rodar código, abra o notebook executado (`pricing_notebook.ipynb`), que já vem com todas as saídas, tabelas e gráficos gerados.
+> É só isso. O script cuidará de todo o resto, executando o pipeline completo de MLOps de forma sequencial.
+
+### Verificação Final
+
+Após a conclusão do script, os seguintes serviços estarão disponíveis:
+
+<div align="center">
+
+| Serviço | URL | Descrição |
+|:-----------|:-------|:-------------|
+| **API Docs (Swagger)** | [`http://localhost:8000/docs`](http://localhost:8000/docs) | Documentação interativa da API com interface Swagger UI |
+| **Dashboard Premium** | [`http://localhost:3000`](http://localhost:3000) | Interface de análise de risco individual e em lote |
+| **Health Check** | [`http://localhost:8000/health`](http://localhost:8000/health) | Endpoint de verificação de status da API |
+
+</div>
 
 ---
 
-## 🔍 Decisões Metodológicas
+## 📊 Screenshots do Sistema
 
-- Intervalos de confiança usam o quantil exato da distribuição *t*, não um multiplicador fixo de 1,96.
-- Erros-padrão cluster-robust por semana em todos os modelos de elasticidade (geral e por subgrupo), para não subestimar a incerteza em dados de painel.
-- Correção de Bonferroni no teste conjunto de 6 subgrupos (canal × UF), para não confundir variação amostral com diferença real.
-- Cálculo explícito de poder estatístico (MDE) para o teste de inadimplência.
-- Caveat de endogeneidade explicitado em texto e nos gráficos.
+### Análise em Lote - Interface Principal
+
+<div align="center">
+
+![Análise em Lote - Interface](https://raw.githubusercontent.com/felipesbonatti/case-credit-risk-prediction/main/assets/analise-lote.png)
+
+**Interface de análise em lote com upload de arquivo CSV**
+
+</div>
+
+### Análise em Lote - Resultados
+
+<div align="center">
+
+![Análise em Lote - Resultados](https://raw.githubusercontent.com/felipesbonatti/case-credit-risk-prediction/main/assets/analise_lote.png)
+
+**Visualização detalhada dos resultados do processamento em lote**
+
+</div>
 
 ---
 
-## 🧭 Roadmap
+## 🧠 Melhorias e Roadmap
 
-| Prazo | Foco | Próximos passos |
-|:---|:---|:---|
-| **Curto prazo** | Novo experimento | Taxa intermediária (2,30% a.m.), amostra dimensionada para o MDE de inadimplência, segmentação por perfil de risco. |
-| **Médio prazo** | Causalidade | Investigar endogeneidade da taxa ofertada; avaliar IV/2SLS para estimar elasticidade causal; testar interações canal × UF formalmente. |
-| **Longo prazo** | Decisão de negócio | Modelar LTV em horizonte de 12–24 meses para suportar novas bandas de taxa antes de cortes mais amplos. |
+> [!NOTE]
+> O projeto atual estabelece uma base sólida e `production-ready`. O próximo passo é evoluir para uma plataforma de MLOps totalmente automatizada e escalável em nuvem.
+
+### Roadmap de Evolução
+
+```mermaid
+timeline
+    title Roadmap de Evolução da Plataforma
+    section Curto Prazo
+        CI/CD : GitHub Actions
+              : Testes automatizados
+              : Deploy contínuo
+        Orquestração : Apache Airflow
+                     : Retreinamento periódico
+                     : Monitoramento de jobs
+    section Médio Prazo
+        Cloud : AWS/Azure/GCP
+              : Terraform (IaC)
+              : Kubernetes (EKS/AKS/GKE)
+        Escalabilidade : Auto-scaling
+                       : Load balancing
+                       : Alta disponibilidade
+    section Longo Prazo
+        MLOps Avançado : Data Drift detection
+                       : Concept Drift monitoring
+                       : A/B Testing
+        Governança : Feature Store
+                   : Model Registry
+                   : Lineage tracking
+```
+
+<details open>
+<summary><b>Clique para ver a tabela detalhada do roadmap</b></summary>
+
+| Fase | Foco | Melhorias Propostas |
+|:--------|:--------|:-----------------------|
+| **Curto Prazo** | **CI/CD e Orquestração** | Implementação de **GitHub Actions** para CI/CD com testes automatizados a cada commit e deploy contínuo. Uso de **Apache Airflow** para orquestração do retreinamento periódico do modelo e monitoramento de jobs. |
+| **Médio Prazo** | **Implantação em Nuvem** | Utilização de **Infraestrutura como Código (IaC)** com **Terraform** para provisionamento automatizado de recursos. Implantação em **Kubernetes (EKS/AKS/GKE)** para alta disponibilidade, escalabilidade automática e load balancing. |
+| **Longo Prazo** | **Monitoramento e Governança** | Implementação de monitoramento avançado de **Data Drift** e **Concept Drift** para detectar degradação do modelo. Desenvolvimento de uma **Feature Store** centralizada para versionamento de variáveis e **Model Registry** para governança completa. |
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+## 📚 Documentação Adicional
+
+### Arquivos de Documentação
+
+<details open>
+<summary><b>Clique para ver todos os arquivos de documentação</b></summary>
+
+1. [`docs/BACEN_2682_Criterios_Risco.md`](https://github.com/felipesbonatti/case-credit-risk-prediction/blob/main/docs/BACEN_2682_Criterios_Risco.md) - Detalhamento técnico da aplicação da Resolução 2.682/99
+2. [`docs/Santander_Criterios_Score.md`](https://github.com/felipesbonatti/case-credit-risk-prediction/blob/main/docs/Santander_Criterios_Score.md) - Critérios de score e taxas utilizadas pelo sistema
+3. [`api/tests/`](https://github.com/felipesbonatti/case-credit-risk-prediction/tree/main/api/tests) - Suíte completa de 79 testes automatizados
+4. [`api/app/services/model_service.py`](https://github.com/felipesbonatti/case-credit-risk-prediction/blob/main/api/app/services/model_service.py) - Implementação da lógica de risco e conformidade regulatória
+5. [`scripts/`](https://github.com/felipesbonatti/case-credit-risk-prediction/tree/main/scripts) - Scripts de geração de dados sintéticos e treinamento do modelo
+
+</details>
+
+
+
+
+
+
+### URLs de Acesso
+
+> [!TIP]
+> Após a execução de `run_all.py`, os seguintes serviços estarão disponíveis:
+
+<div align="center">
+
+| Serviço | URL |
+|:-----------|:-------|
+| **API Docs (Swagger)** | `http://localhost:8000/docs` |
+| **ReDoc** | `http://localhost:8000/redoc` |
+| **Dashboard Premium** | `http://localhost:3000` |
+| **Health Check** | `http://localhost:8000/health` |
+| **Métricas** | `http://localhost:8000/api/v1/metrics` |
+
+</div>
+
+
+
+
+
+---
+
+**Licença:** MIT License - consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+
+
+
+
+
 
 </div>
